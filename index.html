@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格</title>
+<!-- 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+	<style>
+		/* .active{
+			
+		} */
+		.tables{
+			width: 500px;
+			border-collapse: collapse;
+		}
+		.tables tr{
+			/* width: 119px; */
+			height: 43px;
+		}
+		.tables td{
+			width: 80px;
+			height: 40px;
+			text-align: center;
+			line-height: 43px;
+		}
+		.dels{
+			width: 60px;
+			height: 20px;
+		}
+	</style>
+</head>
+</head>
+<body>
+	<table class="tables" border="1">
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>
+					<button class="dels">删除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button id="ad">添加</button>
+</body>
+</html>
+<script>
+	let tds=document.querySelectorAll("td")
+	tds.forEach((item,index)=>{
+		item.ondblclick=function(){
+			let input=document.createElement("input")
+			input.value=item.innerText;
+			item.innerText="index.html"
+			item.appendChild(input)
+			input.focus();
+			input.onblur=function(){
+				item.innerText=input.value;
+			}
+		}
+	})
+	// let table = document.querySelector('table');
+	// let tr = document.querySelector("tr")
+	// console.log(tr)
+	// table.addEventListener('click',function(e){
+	// 	if(e.target.className == 'del'){
+	// 		tr
+	// 	}
+	// })
+	// 
+	let add = document.querySelector('#ad');
+	let body = document.querySelector('tbody');
+	add.onclick = function(){
+		let tr = document.createElement('tr');
+			let p = '';
+			for(let i=0;i<9;i++){
+				p+=`<td class="active">${i+1}</td>`
+			}
+			let a = '<td><button class="dels">删除</button></td>'
+
+			tr.innerHTML = p + a
+			body.appendChild(tr);
+	}
+
+
+	body.onclick = function(e){
+		let g = e.target;
+		if(g.className = 'dels'){
+				let hide = g.parentNode.parentNode.parentNode
+				hide.removeChild(g.parentNode.parentNode)
+		}
+	}
+
+</script>
